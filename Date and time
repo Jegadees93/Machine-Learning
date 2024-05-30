@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+from datetime import datetime
+#create a date variable that contains the dates.
+dates=[datetime(2011, 1, 2),
+datetime(2011, 1, 5),
+datetime(2011, 1, 7),
+datetime(2011, 1, 8),
+datetime(2011, 1, 10),
+datetime(2011, 1, 12)]
+#With this date object, create a series.
+ts = pd.Series(np.random.randn(6), index=dates)
+print("Date Index: \n",ts)
+print("\nDate Index alone from the series: \n",ts.index)
+stamp=ts.index[2]
+print("\nSecond index:\n",stamp)
+#play like a ball with long-time series.
+longer_ts= pd.Series (np.random.randn(1000),
+index=pd.date_range("2000-01-01", periods=1000))
+print("\nDaterange up to 1000 days:\n",longer_ts)
+print("\nDate range - 2001 year :\n",longer_ts["2001"])
+print("\nDate range-05 month 2001 year :\n",longer_ts["2001-05"])
+print("\nDate range - first few dates in 2000 year :\n",longer_ts["2000"].head())
+print("\nDate range - first 15 dates in 02 month -2001 year:\n",longer_ts["2000-02"].head(15))
+print("\nDate range - rom 26-9-2001:\n",longer_ts[datetime(2000,9,26):])
+print("\nDate range - from 26-9-2001 to 25-9- 2002:\n",longer_ts[datetime(2001,9,26):datetime(2002,9,25)])
